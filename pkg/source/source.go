@@ -8,3 +8,7 @@ func From(data []interface{}) stage.Composable {
 
 	return s
 }
+
+func FromIterator(it *stage.Iterator) stage.Composable  {
+	return stage.NewComposableFromIterator(it)
+}

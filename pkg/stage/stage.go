@@ -21,7 +21,11 @@ func Done() int {
 }
 
 func NewComposable(data []interface{}) Composable {
-	return &BasicComposable{NewIteratorFromData(data)}
+	return NewComposableFromIterator(NewIteratorFromData(data))
+}
+
+func NewComposableFromIterator(iterator *Iterator) Composable {
+	return &BasicComposable{iterator}
 }
 
 func ToList(stage Composable) []interface{} {
