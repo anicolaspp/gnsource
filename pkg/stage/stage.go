@@ -5,6 +5,8 @@ type Composable interface {
 
 	ForEach(func(interface{})) Runnable
 
+	Filter(func(interface{}) bool) Composable
+
 	MoveNext() bool
 
 	Current() interface{}
@@ -30,22 +32,4 @@ func ToList(stage Composable) []interface{} {
 	}
 
 	return result
-}
-
-type ForEach struct {
-	prev Composable
-
-	fn func(interface{})
-}
-
-func (foreach ForEach) Run() interface{} {
-	for foreach.prev.MoveNext() {
-		foreach.fn(foreach.prev.Current())
-	}
-
-	return Done()
-}
-
-func NewForEach(prev Composable, fn func(interface{})) Runnable {
-	return ForEach{prev: prev, fn: fn}
 }

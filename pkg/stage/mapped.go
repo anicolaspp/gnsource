@@ -6,6 +6,10 @@ type Mapped struct {
 	mapping func(interface{}) interface{}
 }
 
+func (mapped *Mapped) Filter(fn func(interface{}) bool) Composable {
+	return NewFiltered(mapped, fn)
+}
+
 func (mapped *Mapped) ForEach(f func(interface{})) Runnable {
 	return NewForEach(mapped, f)
 }

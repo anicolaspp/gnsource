@@ -18,16 +18,13 @@ func TestBasicComposable_Map(t *testing.T) {
 		return value
 	}).Map(func(value interface{}) interface{} {
 		return value.(int) + 1
+	}).Filter(func(value interface{}) bool {
+		return value == 3 || value == 5
 	})
 
-	n := 0
-
 	ret := mapped.ForEach(func(value interface{}) {
-		n += 1
+		fmt.Println(value)
 	}).Run()
 
 	fmt.Println(ret)
-	fmt.Println(n)
-
-	fmt.Println(ToList(mapped))
 }

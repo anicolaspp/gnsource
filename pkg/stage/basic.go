@@ -4,6 +4,10 @@ type BasicComposable struct {
 	it *Iterator
 }
 
+func (stage *BasicComposable) Filter(f func(interface{}) bool) Composable {
+	return NewFiltered(stage, f)
+}
+
 func (stage *BasicComposable) ForEach(f func(interface{})) Runnable {
 	return NewForEach(stage, f)
 }
