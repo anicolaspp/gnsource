@@ -23,6 +23,8 @@ func NewIteratorFromData(data []interface{}) *Iterator {
 }
 
 func (it *Iterator) MoveNext() bool {
+	it.started = true
+	
 	if it.idx < len(it.data)-1 {
 		it.idx++
 
@@ -34,7 +36,7 @@ func (it *Iterator) MoveNext() bool {
 
 func (it Iterator) Current() interface{} {
 	if !it.started {
-		return panic
+		panic("Current cannot be used before MoveNext()")
 	}
 	
 	return it.data[it.idx]
