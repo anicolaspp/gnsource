@@ -6,6 +6,10 @@ type Mapped struct {
 	mapping func(interface{}) interface{}
 }
 
+func NewMapped(prevStage Composable, mapping func(interface{}) interface{}) *Mapped {
+	return &Mapped{prevStage: prevStage, mapping: mapping}
+}
+
 func (mapped *Mapped) Filter(fn func(interface{}) bool) Composable {
 	return NewFiltered(mapped, fn)
 }
@@ -15,7 +19,7 @@ func (mapped *Mapped) ForEach(f func(interface{})) Runnable {
 }
 
 func (mapped *Mapped) Map(fn func(interface{}) interface{}) Composable {
-	result := &Mapped{prevStage: mapped, mapping: fn}
+	result := NewMapped(mapped, fn)
 
 	return result
 }

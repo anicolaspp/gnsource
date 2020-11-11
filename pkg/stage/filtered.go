@@ -15,7 +15,7 @@ func NewFiltered(prev Composable, predicate func(interface{}) bool) *Filtered {
 }
 
 func (f Filtered) Map(fn func(interface{}) interface{}) Composable {
-	return &Mapped{prevStage: f, mapping: fn}
+	return NewMapped(f, fn)
 }
 
 func (f Filtered) ForEach(fn func(interface{})) Runnable {

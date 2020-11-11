@@ -21,7 +21,7 @@ func (stage *BasicComposable) Current() interface{} {
 }
 
 func (stage *BasicComposable) Map(fn func(interface{}) interface{}) Composable {
-	mapped := &Mapped{prevStage: stage, mapping: fn}
+	mapped := NewMapped(stage, fn)
 
 	return mapped
 }
