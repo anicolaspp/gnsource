@@ -2,19 +2,26 @@ package source
 
 import (
 	"fmt"
+	"math/rand"
 	"testing"
+	"time"
 )
 
 func TestFromGenerator(t *testing.T) {
+	rand.Seed(int64(time.Now().Nanosecond()))
+
 	succ := func(value interface{}) interface{} {
 		return value.(int) + 1
 	}
 
-	result := FromGenerator(0, succ).Take(10).ToList()
+	seed := rand.Int() % 100
+	toTake := rand.Int() % 1000
 
-	fmt.Println(result)
+	result := FromGenerator(seed, succ).Take(toTake).ToList()
 
-	if len(result) != 10  {
+	t.Log(fmt.Sprintf("Starting at %v and taking %v", seed, toTake))
+
+	if len(result) != toTake {
 		t.Error("Wrong generator")
 	}
 }
