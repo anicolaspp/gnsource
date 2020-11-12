@@ -60,4 +60,33 @@ func (r RandomIterator) Current() interface{} {
 	return r.rnd.Uint64()
 }
 
+type Succ func(interface{}) interface{}
+
+type Generator struct {
+	seed interface{}
+
+	next Succ
+
+	current interface{}
+}
+
+func NewGenerator(seed interface{}, next Succ) *Generator {
+	return &Generator{seed: seed, next: next, current: nil}
+}
+
+func (g *Generator) MoveNext() bool {
+	return true
+}
+
+func (g *Generator) Current() interface{} {
+	if g.current == nil {
+		g.current = g.seed
+	} else {
+		g.current = g.next(g.current)
+	}
+
+	return g.current
+}
+
+
 

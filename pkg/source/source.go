@@ -12,3 +12,7 @@ func From(data []interface{}) stage.Composable {
 func FromIterator(it *stage.Iterator) stage.Composable  {
 	return stage.NewComposableFromIterator(it)
 }
+
+func FromGenerator(seed interface{}, succ stage.Succ) stage.Composable {
+	return stage.NewComposableFromIterator(stage.NewGenerator(seed, succ))
+}
