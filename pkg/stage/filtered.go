@@ -6,6 +6,26 @@ type Filtered struct {
 	predicate func(interface{}) bool
 }
 
+func (f Filtered) Take(n int) Composable {
+	panic("implement me")
+}
+
+func (f Filtered) TakeWhile(f2 func(interface{}) bool) Composable {
+	panic("implement me")
+}
+
+func (f Filtered) First() Runnable {
+	panic("implement me")
+}
+
+func (f Filtered) ToList() []interface{} {
+	return ToList(f)
+}
+
+func (f Filtered) Fold(zero interface{}, fn func(interface{}, interface{}) interface{}) Runnable {
+	panic("implement me")
+}
+
 func (f Filtered) Filter(fn func(interface{}) bool) Composable {
 	return NewFiltered(f, fn)
 }

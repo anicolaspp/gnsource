@@ -1,7 +1,27 @@
 package stage
 
 type BasicComposable struct {
-	it *Iterator
+	it Lazy
+}
+
+func (stage *BasicComposable) Take(n int) Composable {
+	return NewTake(stage, n)
+}
+
+func (stage *BasicComposable) TakeWhile(f func(interface{}) bool) Composable {
+	panic("implement me")
+}
+
+func (stage *BasicComposable) First() Runnable {
+	panic("implement me")
+}
+
+func (stage *BasicComposable) ToList() []interface{} {
+	return ToList(stage)
+}
+
+func (stage *BasicComposable) Fold(zero interface{}, fn func(interface{}, interface{}) interface{}) Runnable {
+	panic("implement me")
 }
 
 func (stage *BasicComposable) Filter(f func(interface{}) bool) Composable {
@@ -25,3 +45,4 @@ func (stage *BasicComposable) Map(fn func(interface{}) interface{}) Composable {
 
 	return mapped
 }
+

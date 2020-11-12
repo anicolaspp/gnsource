@@ -6,6 +6,26 @@ type Mapped struct {
 	mapping func(interface{}) interface{}
 }
 
+func (mapped *Mapped) Take(n int) Composable {
+	panic("implement me")
+}
+
+func (mapped *Mapped) TakeWhile(f func(interface{}) bool) Composable {
+	panic("implement me")
+}
+
+func (mapped *Mapped) First() Runnable {
+	panic("implement me")
+}
+
+func (mapped *Mapped) ToList() []interface{} {
+	return ToList(mapped)
+}
+
+func (mapped *Mapped) Fold(zero interface{}, fn func(interface{}, interface{}) interface{}) Runnable {
+	panic("implement me")
+}
+
 func NewMapped(prevStage Composable, mapping func(interface{}) interface{}) *Mapped {
 	return &Mapped{prevStage: prevStage, mapping: mapping}
 }
