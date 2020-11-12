@@ -7,11 +7,11 @@ type Filtered struct {
 }
 
 func (f Filtered) Take(n int) Composable {
-	panic("implement me")
+	return NewTake(f, n)
 }
 
 func (f Filtered) TakeWhile(f2 func(interface{}) bool) Composable {
-	panic("implement me")
+	return NewTakeWhile(f, f2)
 }
 
 func (f Filtered) First() Runnable {

@@ -7,11 +7,11 @@ type Mapped struct {
 }
 
 func (mapped *Mapped) Take(n int) Composable {
-	panic("implement me")
+	return NewTake(mapped, n)
 }
 
 func (mapped *Mapped) TakeWhile(f func(interface{}) bool) Composable {
-	panic("implement me")
+	return NewTakeWhile(mapped, f)
 }
 
 func (mapped *Mapped) First() Runnable {

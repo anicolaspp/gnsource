@@ -1,8 +1,10 @@
 package stage
 
 import (
+	"fmt"
 	"math/rand"
 	"testing"
+	"time"
 )
 
 func TestTake(t *testing.T) {
@@ -23,9 +25,13 @@ func TestTake(t *testing.T) {
 }
 
 func TestTake_Random(t *testing.T) {
+	rand.Seed(int64(time.Now().Nanosecond()))
+
 	it := NewRandomIterator()
 
 	size := rand.Int() % 100
+
+	t.Log(fmt.Sprintf("Taking %v random numbers", size))
 
 	composable := NewComposableFromIterator(it)
 

@@ -23,7 +23,7 @@ func (t *Take) Take(n int) Composable {
 }
 
 func (t *Take) TakeWhile(f func(interface{}) bool) Composable {
-	panic("implement me")
+	return NewTakeWhile(t, f)
 }
 
 func (t *Take) First() Runnable {
@@ -55,3 +55,4 @@ func (t *Take) Current() interface{} {
 func NewTake(prevStage Composable, n int) *Take {
 	return &Take{prevStage: prevStage, n: n}
 }
+

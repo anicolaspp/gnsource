@@ -9,7 +9,7 @@ func (stage *BasicComposable) Take(n int) Composable {
 }
 
 func (stage *BasicComposable) TakeWhile(f func(interface{}) bool) Composable {
-	panic("implement me")
+	return NewTakeWhile(stage, f)
 }
 
 func (stage *BasicComposable) First() Runnable {
