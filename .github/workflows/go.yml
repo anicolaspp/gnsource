@@ -33,5 +33,4 @@ jobs:
       run: go build -v .
 
     - name: Test
-      run: go test -v pkg/stage/*
-      run: go test -v pkg/source/*
+      run: go test -v pkg/stage/*;go test -v pkg/source/* 
